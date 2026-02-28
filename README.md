@@ -21,6 +21,7 @@ No more tab juggling, channel switching, or missing rewards — just set it, for
 - 🚀 **Streamless Mining** — Earn drops without streaming video (save bandwidth)
 - 🔍 **Automatic Campaign Discovery** — Detects new drop events automatically
 - ⚙️ **Auto Channel Switching** — Always mines the best available stream
+- 🧠 **Auto-Add New Games (Optional)** — Automatically adds newly eligible games to your watchlist
 - 💾 **Persistent Login** — OAuth login saved via cookies
 - 🕹️ **Simple Web UI** — Manage everything from your browser
 - 🧩 **Docker-Ready** — One command to deploy anywhere
@@ -65,6 +66,18 @@ python main.py
 Visit 👉 **<http://localhost:8080>**
 
 ---
+
+### ⚙️ Auto-Add New Games (Optional)
+
+You can enable automatic watchlist expansion for newly eligible campaigns:
+
+- `auto_add_new_games`: enable/disable auto-add (default: `false`)
+- `auto_add_only_active`: only add currently active campaigns (default: `true`)
+- `auto_add_within_hours`: look-ahead window (default: `24`)
+- `auto_add_max_new_per_refresh`: cap per refresh (default: `3`)
+- `auto_add_require_wanted_benefits`: only add if desired benefit types match (default: `true`)
+
+These values are stored in your settings JSON and can be updated via the web settings API.
 
 ## 🌈 Using the Web App
 

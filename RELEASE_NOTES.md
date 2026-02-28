@@ -1,3 +1,17 @@
+# Release Notes - Unreleased
+
+### 🎮 Auto-Add Newly Eligible Games
+
+- Added optional auto-add logic for newly eligible games discovered during inventory refresh.
+- New settings:
+  - `auto_add_new_games`
+  - `auto_add_only_active`
+  - `auto_add_within_hours`
+  - `auto_add_max_new_per_refresh`
+  - `auto_add_require_wanted_benefits`
+- Added API/settings-manager support for these fields.
+- Added test coverage in `tests/test_auto_add_games.py`.
+
 # Release Notes - v1.2.2
 
 This release brings significant enhancements to the core efficiency of the Twitch Drops Miner! We focused on unifying and smartening up the logic that selects games and tracks drops, ensuring your mining time is spent more effectively.
