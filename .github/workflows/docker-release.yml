@@ -1,9 +1,8 @@
-name: Docker Release
+name: Docker Release (manual fallback)
 
+# Manual fallback workflow.
+# Primary release flow is: .github/workflows/version-release.yml
 on:
-  push:
-    branches:
-      - 'release/**'
   workflow_dispatch:
 
 permissions:

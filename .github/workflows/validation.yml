@@ -32,14 +32,13 @@ jobs:
 
       - name: Run Ruff linter
         run: |
-          ruff check --fix src/
+          ruff check src/
           echo "✅ Ruff checks passed!"
 
       - name: Run Mypy type checker
         run: |
           mypy src/
           echo "✅ Mypy checks passed!"
-        continue-on-error: true  # Don't fail CI on mypy errors yet
 
   validate:
     name: Validate Language Files

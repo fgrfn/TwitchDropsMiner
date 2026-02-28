@@ -1,5 +1,7 @@
-name: GitHub Release
+name: GitHub Release (manual fallback)
 
+# Manual fallback workflow.
+# Primary release flow is: .github/workflows/version-release.yml
 on:
   workflow_dispatch:
 
