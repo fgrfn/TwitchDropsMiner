@@ -1,3 +1,25 @@
+# Release Notes - v1.2.4
+
+This release finalizes the new game-priority and auto-add experience and stabilizes the release pipeline for fork-based publishing with GHCR.
+
+### 🧭 Game Priority UX
+
+- Added a **quick move-to-top** action (`⇧`) for selected games.
+- Newly selected games are now inserted at the **top** of the priority list.
+- Drag-and-drop reordering remains available for fine tuning.
+
+### 🎮 Auto-Add Defaults + WebUI Control
+
+- Added a WebUI toggle in **Settings → General** for auto-adding newly eligible games.
+- `auto_add_new_games` is now **enabled by default** for new installs.
+- Auto-add can be disabled at any time via UI or settings API.
+
+### 🛠️ Release/CI Pipeline Improvements
+
+- Switched container publishing to **GHCR** (`ghcr.io/fgrfn/twitch-drops-miner`).
+- `Create Version Release` now acts as the **single end-to-end release workflow** (branch/tag + image + GitHub release).
+- Improved workflow robustness for manual dispatch and optional release-note generation.
+
 # Release Notes - v1.2.3
 
 This release introduces an optional quality-of-life automation feature: the miner can now automatically expand your watchlist when new eligible campaigns appear.
