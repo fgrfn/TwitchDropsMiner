@@ -28,8 +28,13 @@ jobs:
       - name: Extract version from branch and version.py
         id: extract
         run: |
-          # Extract version from branch name and validate against version.py
-          .github/scripts/extract_version.sh "${{ env.CURRENT_BRANCH_NAME }}"
+          # On release/* branches, enforce branch-version match.
+          # On manual dispatch from main, validate only version files.
+          if [[ "${{ env.CURRENT_BRANCH_NAME }}" == release/* ]]; then
+            .github/scripts/extract_version.sh "${{ env.CURRENT_BRANCH_NAME }}"
+          else
+            .github/scripts/extract_version.sh
+          fi
 
       - name: Validate version format
         run: |
