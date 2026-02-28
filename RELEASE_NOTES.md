@@ -8,12 +8,12 @@ You can now enable automatic watchlist expansion for newly discovered, eligible 
 
 - **New optional auto-add workflow** to append game names to `games_to_watch`
 - **Configurable behavior** with safety limits and filters:
-  - `auto_add_new_games` (default: `false`)
+  - `auto_add_new_games` (default: `true`)
   - `auto_add_only_active` (default: `true`)
   - `auto_add_within_hours` (default: `24`)
   - `auto_add_max_new_per_refresh` (default: `3`)
   - `auto_add_require_wanted_benefits` (default: `true`)
-- **Backward compatible by default**: existing behavior is unchanged unless auto-add is explicitly enabled
+- Auto-add is now enabled by default and can be turned off via WebUI toggle in Settings → General.
 
 ### 🧭 Priority Sorting UX Improvements
 

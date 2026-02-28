@@ -71,13 +71,15 @@ Visit 👉 **<http://localhost:8080>**
 
 You can enable automatic watchlist expansion for newly eligible campaigns:
 
-- `auto_add_new_games`: enable/disable auto-add (default: `false`)
+- `auto_add_new_games`: enable/disable auto-add (default: `true`)
 - `auto_add_only_active`: only add currently active campaigns (default: `true`)
 - `auto_add_within_hours`: look-ahead window (default: `24`)
 - `auto_add_max_new_per_refresh`: cap per refresh (default: `3`)
 - `auto_add_require_wanted_benefits`: only add if desired benefit types match (default: `true`)
 
 These values are stored in your settings JSON and can be updated via the web settings API.
+
+A WebUI toggle is available in **Settings → General** (`Auto-add newly eligible games`).
 
 ### 🧭 Faster Priority Reordering
 
