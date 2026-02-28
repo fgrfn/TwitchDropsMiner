@@ -1,3 +1,24 @@
+# Release Notes - v1.2.5
+
+This patch release focuses on release workflow reliability, documentation consistency, and quality-of-life polish around game prioritization and auto-add behavior.
+
+### 🚀 Release Pipeline Reliability
+
+- Standardized release flow so **Create Version Release** acts as the primary end-to-end pipeline.
+- Improved workflow robustness for manual runs and fork-based publishing.
+- Added/kept manual fallback workflows for emergency recovery.
+
+### 🧭 Priority & Auto-Add UX
+
+- Added a Settings UI toggle for auto-adding newly eligible games.
+- Auto-add remains configurable and can be disabled instantly from the UI.
+- Priority management remains streamlined with quick move-to-top and top-insert behavior.
+
+### 📚 Documentation & Notes
+
+- Updated README and release notes to reflect current defaults and UI behavior.
+- Clarified GHCR publishing path and fork-specific release expectations.
+
 # Release Notes - v1.2.4
 
 This release finalizes the new game-priority and auto-add experience and stabilizes the release pipeline for fork-based publishing with GHCR.
