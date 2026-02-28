@@ -21,9 +21,9 @@ jobs:
           ref: ${{ env.CURRENT_BRANCH_NAME }}
           fetch-depth: 0
 
-      - name: Extract version from branch
+      - name: Extract version from project files
         id: extract
-        run: .github/scripts/extract_version.sh "${{ env.CURRENT_BRANCH_NAME }}"
+        run: .github/scripts/extract_version.sh
 
       - name: Validate version format
         id: validate
