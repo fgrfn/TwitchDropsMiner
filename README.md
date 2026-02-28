@@ -3,10 +3,10 @@
 > 🎮 **Automate Twitch Drop Farming — Effortlessly, Headlessly, and Bandwidth-Free**
 
 <p align="center">
-  <a href="https://github.com/rangermix/TwitchDropsMiner/stargazers"><img src="https://img.shields.io/github/stars/rangermix/TwitchDropsMiner?style=for-the-badge&color=yellow" alt="Stars"></a>
-  <a href="https://github.com/rangermix/TwitchDropsMiner/releases"><img src="https://img.shields.io/github/v/release/rangermix/TwitchDropsMiner?style=for-the-badge&color=brightgreen" alt="Release"></a>
-  <a href="https://hub.docker.com/r/rangermix/twitch-drops-miner"><img src="https://img.shields.io/docker/pulls/rangermix/twitch-drops-miner?style=for-the-badge&color=blue" alt="Docker Pulls"></a>
-  <a href="https://github.com/rangermix/TwitchDropsMiner/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rangermix/TwitchDropsMiner?style=for-the-badge&color=orange" alt="License"></a>
+  <a href="https://github.com/fgrfn/TwitchDropsMiner/stargazers"><img src="https://img.shields.io/github/stars/rangermix/TwitchDropsMiner?style=for-the-badge&color=yellow" alt="Stars"></a>
+  <a href="https://github.com/fgrfn/TwitchDropsMiner/releases"><img src="https://img.shields.io/github/v/release/rangermix/TwitchDropsMiner?style=for-the-badge&color=brightgreen" alt="Release"></a>
+  <a href="https://github.com/fgrfn/TwitchDropsMiner/pkgs/container/twitch-drops-miner"><img src="https://img.shields.io/badge/GHCR-Container-blue?style=for-the-badge&logo=github" alt="GHCR Container"></a>
+  <a href="https://github.com/fgrfn/TwitchDropsMiner/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rangermix/TwitchDropsMiner?style=for-the-badge&color=orange" alt="License"></a>
   <a href="https://www.python.org/downloads/"><img src="https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python" alt="Python"></a>
 </p>
 
@@ -33,8 +33,8 @@ No more tab juggling, channel switching, or missing rewards — just set it, for
 ### 🐳 Using Pre-Built Image (Docker run)
 
 ```bash
-docker pull rangermix/twitch-drops-miner:latest
-docker run -d -p 8080:8080 -v $(pwd)/data:/app/data rangermix/twitch-drops-miner:latest
+docker pull ghcr.io/fgrfn/twitch-drops-miner:latest
+docker run -d -p 8080:8080 -v $(pwd)/data:/app/data ghcr.io/fgrfn/twitch-drops-miner:latest
 ```
 
 ### 📦 Using Docker Compose
@@ -42,7 +42,7 @@ docker run -d -p 8080:8080 -v $(pwd)/data:/app/data rangermix/twitch-drops-miner
 ```yaml
 services:
   twitch-drops-miner:
-    image: rangermix/twitch-drops-miner:latest
+    image: ghcr.io/fgrfn/twitch-drops-miner:latest
     ports:
       - "8080:8080"
     volumes:

@@ -24,8 +24,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-        with:
-          token: ${{ secrets.PUBLISHER_TOKEN }}
 
       - name: Extract version from branch and version.py
         id: extract
@@ -54,17 +52,18 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to Docker Hub
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate Docker tags
         id: docker-tags
         run: |
           VERSION="${{ needs.extract-version.outputs.version }}"
-          IMAGE="rangermix/twitch-drops-miner"
+          IMAGE="ghcr.io/${{ github.repository_owner }}/twitch-drops-miner"
           IS_PRERELEASE="${{ needs.extract-version.outputs.is_prerelease }}"
 
           # Always include the full version tag
@@ -114,5 +113,5 @@ jobs:
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: github-release.yml
-          token: ${{ secrets.PUBLISHER_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.ref }}
