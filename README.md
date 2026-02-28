@@ -79,6 +79,13 @@ You can enable automatic watchlist expansion for newly eligible campaigns:
 
 These values are stored in your settings JSON and can be updated via the web settings API.
 
+### 🧭 Faster Priority Reordering
+
+In **Settings → Games to Watch**:
+- Newly selected games are added at the **top** of your priority list
+- Use the **⇧** button to move any game to top instantly
+- Drag-and-drop still works for fine-grained ordering
+
 ## 🌈 Using the Web App
 
 1. Open `http://localhost:8080`

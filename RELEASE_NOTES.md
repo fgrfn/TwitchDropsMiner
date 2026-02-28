@@ -15,6 +15,13 @@ You can now enable automatic watchlist expansion for newly discovered, eligible 
   - `auto_add_require_wanted_benefits` (default: `true`)
 - **Backward compatible by default**: existing behavior is unchanged unless auto-add is explicitly enabled
 
+### 🧭 Priority Sorting UX Improvements
+
+- Improved **Games to Watch** prioritization workflow in Settings:
+  - newly selected games are inserted at the **top** of the list
+  - each selected game now has a **quick "move to top"** action (`⇧`)
+- This reduces drag-and-drop friction for large lists and makes reprioritization much faster.
+
 ### ⚙️ API / Settings Updates
 
 - Extended settings update model and manager to accept and persist all new auto-add fields.
