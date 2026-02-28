@@ -74,6 +74,11 @@ class SettingsUpdate(BaseModel):
     proxy: str | None = None
     connection_quality: int | None = None
     minimum_refresh_interval_minutes: int | None = None
+    auto_add_new_games: bool | None = None
+    auto_add_only_active: bool | None = None
+    auto_add_within_hours: int | None = None
+    auto_add_max_new_per_refresh: int | None = None
+    auto_add_require_wanted_benefits: bool | None = None
     inventory_filters: dict | None = None
     mining_benefits: dict[str, bool] | None = None
 

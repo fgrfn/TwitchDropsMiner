@@ -96,6 +96,25 @@ class SettingsManager:
             settings_data.get("minimum_refresh_interval_minutes"),
         )
         should_trigger_update |= self.check_and_update_setting(
+            "auto_add_new_games", settings_data.get("auto_add_new_games"), True
+        )
+        should_trigger_update |= self.check_and_update_setting(
+            "auto_add_only_active", settings_data.get("auto_add_only_active"), True
+        )
+        should_trigger_update |= self.check_and_update_setting(
+            "auto_add_within_hours", settings_data.get("auto_add_within_hours"), True
+        )
+        should_trigger_update |= self.check_and_update_setting(
+            "auto_add_max_new_per_refresh",
+            settings_data.get("auto_add_max_new_per_refresh"),
+            True,
+        )
+        should_trigger_update |= self.check_and_update_setting(
+            "auto_add_require_wanted_benefits",
+            settings_data.get("auto_add_require_wanted_benefits"),
+            True,
+        )
+        should_trigger_update |= self.check_and_update_setting(
             "inventory_filters", settings_data.get("inventory_filters")
         )
         should_trigger_update |= self.check_and_update_setting(

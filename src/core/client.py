@@ -258,6 +258,16 @@ class Twitch:
                 if logger.isEnabledFor(logging.DEBUG):
                     self._output_campaign_mapping(next_hour)
 
+                if self.settings.auto_add_new_games:
+                    auto_added_games = self._stream_selector.find_auto_add_game_names(
+                        self.settings, self.inventory
+                    )
+                    if auto_added_games:
+                        self.settings.games_to_watch.extend(auto_added_games)
+                        self.settings.save()
+                        logger.info("Auto-added games to watchlist: %s", ", ".join(auto_added_games))
+                        self.print(f"Auto-added games: {', '.join(auto_added_games)}")
+
                 logger.info("Building wanted games list")
                 # Build wanted_games list preserving the order from games_to_watch
                 self.wanted_games = self._stream_selector.get_wanted_games(

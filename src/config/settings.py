@@ -40,6 +40,11 @@ default_settings = {
         "show_upcoming": True,
     },
     "minimum_refresh_interval_minutes": 30,
+    "auto_add_new_games": False,
+    "auto_add_only_active": True,
+    "auto_add_within_hours": 24,
+    "auto_add_max_new_per_refresh": 3,
+    "auto_add_require_wanted_benefits": True,
     "mining_benefits": {
         "BADGE": True,
         "DIRECT_ENTITLEMENT": True,
@@ -58,6 +63,11 @@ class Settings:
     language: str
     inventory_filters: InventoryFilters
     minimum_refresh_interval_minutes: int
+    auto_add_new_games: bool
+    auto_add_only_active: bool
+    auto_add_within_hours: int
+    auto_add_max_new_per_refresh: int
+    auto_add_require_wanted_benefits: bool
     mining_benefits: dict[str, bool]
     proxy: str
 
