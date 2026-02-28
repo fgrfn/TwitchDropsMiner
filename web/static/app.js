@@ -1194,12 +1194,16 @@ function renderSelectedGames(games) {
             <span class="drag-handle">☰</span>
             <span class="priority-number">${index + 1}</span>
             <span class="game-name">${game}</span>
+            <button class="priority-btn" title="Move to top">⇧</button>
             <button class="remove-btn">✕</button>
         `;
 
         // Event listener for the delete button
         const removeBtn = div.querySelector('.remove-btn');
         removeBtn.addEventListener('click', () => removeGameFromWatch(game));
+
+        const priorityBtn = div.querySelector('.priority-btn');
+        priorityBtn.addEventListener('click', () => moveGameToTop(game));
 
         // Drag event handlers
         div.addEventListener('dragstart', handleDragStart);
@@ -1305,7 +1309,7 @@ function toggleGameWatch(gameName, checked) {
     const games = state.settings.games_to_watch || [];
 
     if (checked && !games.includes(gameName)) {
-        games.push(gameName);
+        games.unshift(gameName);
     } else if (!checked) {
         const index = games.indexOf(gameName);
         if (index > -1) {
@@ -1317,6 +1321,19 @@ function toggleGameWatch(gameName, checked) {
     renderGamesToWatch();
     renderChannels();
     saveSettings();
+}
+
+function moveGameToTop(gameName) {
+    const games = state.settings.games_to_watch || [];
+    const index = games.indexOf(gameName);
+    if (index > 0) {
+        games.splice(index, 1);
+        games.unshift(gameName);
+        state.settings.games_to_watch = games;
+        renderGamesToWatch();
+        renderChannels();
+        saveSettings();
+    }
 }
 
 function removeGameFromWatch(gameName) {
