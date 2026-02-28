@@ -40,7 +40,7 @@ default_settings = {
         "show_upcoming": True,
     },
     "minimum_refresh_interval_minutes": 30,
-    "auto_add_new_games": False,
+    "auto_add_new_games": True,
     "auto_add_only_active": True,
     "auto_add_within_hours": 24,
     "auto_add_max_new_per_refresh": 3,

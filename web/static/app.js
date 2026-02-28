@@ -1043,6 +1043,7 @@ function updateSettingsUI(settings) {
     document.getElementById('dark-mode').checked = settings.dark_mode || false;
     document.getElementById('connection-quality').value = settings.connection_quality || 1;
     document.getElementById('minimum-refresh-interval').value = settings.minimum_refresh_interval_minutes || 30;
+    document.getElementById('auto-add-new-games').checked = settings.auto_add_new_games !== false;
 
     // Update proxy settings and indicator
     const proxyUrl = settings.proxy || '';
@@ -1492,6 +1493,7 @@ async function saveSettings() {
         language: document.getElementById('language').value,
         connection_quality: parseInt(document.getElementById('connection-quality').value),
         minimum_refresh_interval_minutes: parseInt(document.getElementById('minimum-refresh-interval').value),
+        auto_add_new_games: document.getElementById('auto-add-new-games').checked,
         proxy: state.settings.proxy || '',
         games_to_watch: state.settings.games_to_watch || [],
         inventory_filters: getInventoryFilters(),
