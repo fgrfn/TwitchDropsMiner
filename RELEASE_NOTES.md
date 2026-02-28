@@ -1,16 +1,33 @@
-# Release Notes - Unreleased
+# Release Notes - v1.2.3
 
-### 🎮 Auto-Add Newly Eligible Games
+This release introduces an optional quality-of-life automation feature: the miner can now automatically expand your watchlist when new eligible campaigns appear.
 
-- Added optional auto-add logic for newly eligible games discovered during inventory refresh.
-- New settings:
-  - `auto_add_new_games`
-  - `auto_add_only_active`
-  - `auto_add_within_hours`
-  - `auto_add_max_new_per_refresh`
-  - `auto_add_require_wanted_benefits`
-- Added API/settings-manager support for these fields.
-- Added test coverage in `tests/test_auto_add_games.py`.
+### 🎮 Auto-Add Newly Eligible Games (Optional)
+
+You can now enable automatic watchlist expansion for newly discovered, eligible campaigns during inventory refresh.
+
+- **New optional auto-add workflow** to append game names to `games_to_watch`
+- **Configurable behavior** with safety limits and filters:
+  - `auto_add_new_games` (default: `false`)
+  - `auto_add_only_active` (default: `true`)
+  - `auto_add_within_hours` (default: `24`)
+  - `auto_add_max_new_per_refresh` (default: `3`)
+  - `auto_add_require_wanted_benefits` (default: `true`)
+- **Backward compatible by default**: existing behavior is unchanged unless auto-add is explicitly enabled
+
+### ⚙️ API / Settings Updates
+
+- Extended settings update model and manager to accept and persist all new auto-add fields.
+- Added user-facing documentation for configuration in the README.
+
+### ✅ Quality & Testing
+
+- Added dedicated tests for auto-add logic:
+  - deduplication behavior
+  - active-only filtering
+  - wanted-benefit filtering
+  - per-refresh limits
+- Lint/type checks remain clean.
 
 # Release Notes - v1.2.2
 
