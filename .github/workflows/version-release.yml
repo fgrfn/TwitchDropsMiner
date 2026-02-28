@@ -44,13 +44,15 @@ jobs:
 
           echo "Branch '$BRANCH_NAME' does not exist, proceeding..."
 
-      - name: Auto-generate release notes if missing
-        if: ${{ secrets.GEMINI_API_KEY != '' }}
-        run: .github/scripts/generate_release_notes.sh -v "${{ steps.validate.outputs.version }}" -k "${{ secrets.GEMINI_API_KEY }}" -p
-
-      - name: Skip auto-generation (no GEMINI_API_KEY)
-        if: ${{ secrets.GEMINI_API_KEY == '' }}
-        run: echo "GEMINI_API_KEY not set; skipping auto release-notes generation"
+      - name: Auto-generate release notes if missing (optional)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          if [ -n "$GEMINI_API_KEY" ]; then
+            .github/scripts/generate_release_notes.sh -v "${{ steps.validate.outputs.version }}" -k "$GEMINI_API_KEY" -p
+          else
+            echo "GEMINI_API_KEY not set; skipping auto release-notes generation"
+          fi
 
       - name: Create release branch and update version
         run: .github/scripts/create_release.sh "${{ steps.validate.outputs.version }}" "${{ env.CURRENT_BRANCH_NAME }}"
