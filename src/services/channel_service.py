@@ -13,7 +13,7 @@ from collections import abc
 from typing import TYPE_CHECKING
 
 from src.config import GQL_OPERATIONS, MAX_INT
-from src.exceptions import GQLException, MinerException
+from src.exceptions import GQLException
 from src.models.channel import Channel
 from src.utils import chunk
 
@@ -120,7 +120,14 @@ class ChannelService:
                 )
             )
         except GQLException as exc:
-            raise MinerException(f"Game: {game.slug}") from exc
+            # Twitch occasionally returns transient/service errors for specific game slugs.
+            # Do not crash the whole miner because one game directory lookup failed.
+            logger.warning(
+                "Skipping game directory fetch due to GQL error (game=%s): %s",
+                game.slug,
+                exc,
+            )
+            return []
 
         if "game" in response["data"]:
             return [
