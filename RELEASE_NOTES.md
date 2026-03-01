@@ -1,3 +1,14 @@
+# Release Notes - v1.2.9
+
+This patch adds account switching support directly in the WebUI.
+
+### 🔐 Account Unlink / Re-Auth
+
+- Added **Unlink Account** action in the Login panel.
+- New API endpoint: `POST /api/auth/unlink`.
+- Clears current Twitch session/cookies and triggers a fresh login flow.
+- Rebinds user websocket topics after successful re-auth, so the miner continues without restart.
+
 # Release Notes - v1.2.8
 
 This patch fixes WebUI persistence issues for newly introduced auto-add and Discord webhook notification settings.

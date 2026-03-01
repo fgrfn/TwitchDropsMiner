@@ -92,6 +92,10 @@ You can configure Discord webhook notifications in **Settings → General**:
 
 If no webhook URL is set, notifications are skipped.
 
+### 🔐 Unlink Twitch Account
+
+In the WebUI Login panel, you can now click **Unlink Account** to clear the current Twitch session and connect a different account without restarting the app.
+
 ### 🧭 Faster Priority Reordering
 
 In **Settings → Games to Watch**:
