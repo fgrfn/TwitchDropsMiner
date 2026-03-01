@@ -1,3 +1,13 @@
+# Release Notes - v1.2.6
+
+This patch improves runtime stability when Twitch returns transient GraphQL service errors for specific game directories.
+
+### 🐛 Stability Fixes
+
+- Fixed a crash in channel discovery when Twitch returns `service error` for a game slug (for example `peak-2025`).
+- The miner now logs a warning and skips only the affected game instead of terminating the entire process.
+- This keeps mining active for all other eligible campaigns and reduces unnecessary restarts.
+
 # Release Notes - v1.2.5
 
 This patch release focuses on release workflow reliability, documentation consistency, and quality-of-life polish around game prioritization and auto-add behavior.
