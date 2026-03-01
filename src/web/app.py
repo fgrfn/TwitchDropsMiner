@@ -79,6 +79,9 @@ class SettingsUpdate(BaseModel):
     auto_add_within_hours: int | None = None
     auto_add_max_new_per_refresh: int | None = None
     auto_add_require_wanted_benefits: bool | None = None
+    discord_webhook_url: str | None = None
+    discord_notify_auto_add: bool | None = None
+    discord_notify_claimed_drops: bool | None = None
     inventory_filters: dict | None = None
     mining_benefits: dict[str, bool] | None = None
 

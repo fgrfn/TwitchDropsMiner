@@ -45,6 +45,9 @@ default_settings = {
     "auto_add_within_hours": 24,
     "auto_add_max_new_per_refresh": 3,
     "auto_add_require_wanted_benefits": True,
+    "discord_webhook_url": "",
+    "discord_notify_auto_add": True,
+    "discord_notify_claimed_drops": True,
     "mining_benefits": {
         "BADGE": True,
         "DIRECT_ENTITLEMENT": True,
@@ -68,6 +71,9 @@ class Settings:
     auto_add_within_hours: int
     auto_add_max_new_per_refresh: int
     auto_add_require_wanted_benefits: bool
+    discord_webhook_url: str
+    discord_notify_auto_add: bool
+    discord_notify_claimed_drops: bool
     mining_benefits: dict[str, bool]
     proxy: str
 

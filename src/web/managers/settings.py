@@ -114,6 +114,21 @@ class SettingsManager:
             settings_data.get("auto_add_require_wanted_benefits"),
             True,
         )
+        if "discord_webhook_url" in settings_data:
+            webhook_value = settings_data["discord_webhook_url"]
+            should_trigger_update |= self.check_and_update_setting(
+                "discord_webhook_url",
+                str(webhook_value).strip() if webhook_value else "",
+                False,
+            )
+        should_trigger_update |= self.check_and_update_setting(
+            "discord_notify_auto_add", settings_data.get("discord_notify_auto_add"), False
+        )
+        should_trigger_update |= self.check_and_update_setting(
+            "discord_notify_claimed_drops",
+            settings_data.get("discord_notify_claimed_drops"),
+            False,
+        )
         should_trigger_update |= self.check_and_update_setting(
             "inventory_filters", settings_data.get("inventory_filters")
         )

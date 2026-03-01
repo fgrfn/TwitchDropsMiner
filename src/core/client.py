@@ -165,6 +165,22 @@ class Twitch:
         """Print a message in the GUI."""
         self.gui.print(message)
 
+    async def notify_discord_webhook(self, message: str) -> None:
+        """Send a best-effort Discord webhook message if configured."""
+        webhook_url = (self.settings.discord_webhook_url or "").strip()
+        if not webhook_url:
+            return
+        try:
+            session = await self.get_session()
+            payload = {"content": message[:1900]}
+            async with session.post(webhook_url, json=payload) as response:
+                if response.status >= 400:
+                    logger.warning(
+                        "Discord webhook returned HTTP %s", response.status
+                    )
+        except Exception as exc:
+            logger.warning("Failed to send Discord webhook notification: %s", exc)
+
     def _remove_channel_topics(self, channels: abc.Iterable[Channel]) -> None:
         """Remove websocket topics for a list of channels."""
         topics_to_remove: list[str] = []
@@ -267,6 +283,10 @@ class Twitch:
                         self.settings.save()
                         logger.info("Auto-added games to watchlist: %s", ", ".join(auto_added_games))
                         self.print(f"Auto-added games: {', '.join(auto_added_games)}")
+                        if self.settings.discord_notify_auto_add:
+                            await self.notify_discord_webhook(
+                                f"🧠 Auto-added games: {', '.join(auto_added_games)}"
+                            )
 
                 logger.info("Building wanted games list")
                 # Build wanted_games list preserving the order from games_to_watch

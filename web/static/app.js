@@ -1044,6 +1044,9 @@ function updateSettingsUI(settings) {
     document.getElementById('connection-quality').value = settings.connection_quality || 1;
     document.getElementById('minimum-refresh-interval').value = settings.minimum_refresh_interval_minutes || 30;
     document.getElementById('auto-add-new-games').checked = settings.auto_add_new_games !== false;
+    document.getElementById('discord-webhook-url').value = settings.discord_webhook_url || '';
+    document.getElementById('discord-notify-auto-add').checked = settings.discord_notify_auto_add !== false;
+    document.getElementById('discord-notify-claimed-drops').checked = settings.discord_notify_claimed_drops !== false;
 
     // Update proxy settings and indicator
     const proxyUrl = settings.proxy || '';
@@ -1494,6 +1497,9 @@ async function saveSettings() {
         connection_quality: parseInt(document.getElementById('connection-quality').value),
         minimum_refresh_interval_minutes: parseInt(document.getElementById('minimum-refresh-interval').value),
         auto_add_new_games: document.getElementById('auto-add-new-games').checked,
+        discord_webhook_url: document.getElementById('discord-webhook-url').value,
+        discord_notify_auto_add: document.getElementById('discord-notify-auto-add').checked,
+        discord_notify_claimed_drops: document.getElementById('discord-notify-claimed-drops').checked,
         proxy: state.settings.proxy || '',
         games_to_watch: state.settings.games_to_watch || [],
         inventory_filters: getInventoryFilters(),
