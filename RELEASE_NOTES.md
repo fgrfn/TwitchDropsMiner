@@ -1,3 +1,13 @@
+# Release Notes - v1.2.10
+
+This patch fixes visibility of the account unlink action in the WebUI for already logged-in users.
+
+### 🛠️ UI Fixes
+
+- Fixed **Unlink Account** button visibility when a user is already authenticated.
+- The unlink action is now shown in logged-in state and hidden in logged-out/OAuth-pending states.
+- Improves account-switching usability without requiring a restart.
+
 # Release Notes - v1.2.9
 
 This patch adds account switching support directly in the WebUI.
