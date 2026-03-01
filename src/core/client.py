@@ -6,13 +6,14 @@ from collections import OrderedDict, abc, deque
 from datetime import datetime, timedelta, timezone
 from functools import partial
 from time import time
-from typing import TYPE_CHECKING, Any, Final, Literal
+from typing import TYPE_CHECKING, Any, Final, Literal, cast
 
 import aiohttp
 
 from src.api import GQLClient, HTTPClient
 from src.auth import _AuthState
 from src.config import (
+    COOKIES_PATH,
     MAX_CHANNELS,
     ClientType,
     State,
@@ -180,6 +181,46 @@ class Twitch:
                     )
         except Exception as exc:
             logger.warning("Failed to send Discord webhook notification: %s", exc)
+
+    async def unlink_and_reauth(self) -> None:
+        """Unlink current Twitch account and force fresh login flow."""
+        old_user_id = self._auth_state.user_id if hasattr(self._auth_state, "user_id") else None
+
+        session = await self.get_session()
+        jar = cast(aiohttp.CookieJar, session.cookie_jar)
+        jar.clear()
+        COOKIES_PATH.unlink(missing_ok=True)
+
+        self._auth_state.clear()
+        self.print("Current Twitch account unlinked. Please login again.")
+
+        # Force re-auth now (this triggers OAuth/login UI flow)
+        auth_state = await self.get_auth()
+
+        # Rebind websocket user topics if account changed
+        if old_user_id and old_user_id != auth_state.user_id:
+            self.websocket.remove_topics(
+                [
+                    WebsocketTopic.as_str("User", "Drops", old_user_id),
+                    WebsocketTopic.as_str("User", "Notifications", old_user_id),
+                ]
+            )
+
+        self.websocket.add_topics(
+            [
+                WebsocketTopic(
+                    "User", "Drops", auth_state.user_id, self._message_handler_service.process_drops
+                ),
+                WebsocketTopic(
+                    "User",
+                    "Notifications",
+                    auth_state.user_id,
+                    self._message_handler_service.process_notifications,
+                ),
+            ]
+        )
+
+        self.change_state(State.INVENTORY_FETCH)
 
     def _remove_channel_topics(self, channels: abc.Iterable[Channel]) -> None:
         """Remove websocket topics for a list of channels."""

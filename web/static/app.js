@@ -1450,6 +1450,26 @@ async function confirmOAuth() {
     }
 }
 
+async function unlinkAccount() {
+    const confirmed = window.confirm('Unlink current Twitch account and login with a new one?');
+    if (!confirmed) return;
+
+    try {
+        await fetch('/api/auth/unlink', {
+            method: 'POST'
+        });
+
+        const loginStatus = document.getElementById('login-status');
+        loginStatus.textContent = 'Account unlinked. Please login again.';
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('oauth-code-display').style.display = 'none';
+        addConsoleLine('Twitch account unlinked. Waiting for new login...');
+    } catch (error) {
+        console.error('Failed to unlink account:', error);
+        addConsoleLine(`Error unlinking account: ${error.message}`);
+    }
+}
+
 async function verifyProxy() {
     const proxyInput = document.getElementById('proxy-url');
     const proxyUrl = proxyInput ? proxyInput.value.trim() : '';
@@ -1941,6 +1961,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Login form
     document.getElementById('login-button').addEventListener('click', submitLogin);
+    document.getElementById('unlink-account-button').addEventListener('click', unlinkAccount);
     document.getElementById('oauth-confirm').addEventListener('click', confirmOAuth);
 
     // Settings - auto-save on change

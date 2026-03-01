@@ -312,6 +312,16 @@ async def confirm_oauth():
     return {"success": True}
 
 
+@app.post("/api/auth/unlink")
+async def unlink_auth_account():
+    """Unlink current Twitch account and trigger fresh login flow."""
+    if not twitch_client:
+        raise HTTPException(status_code=503, detail="Twitch client not initialized")
+
+    asyncio.create_task(twitch_client.unlink_and_reauth())
+    return {"success": True}
+
+
 @app.post("/api/reload")
 async def trigger_reload():
     """Trigger application reload"""
