@@ -1007,11 +1007,13 @@ function renderInventory() {
 function showLoginForm() {
     document.getElementById('login-form').style.display = 'block';
     document.getElementById('oauth-code-display').style.display = 'none';
+    document.getElementById('linked-account-actions').style.display = 'none';
 }
 
 function showOAuthCode(url, code) {
     document.getElementById('login-form').style.display = 'none';
     document.getElementById('oauth-code-display').style.display = 'block';
+    document.getElementById('linked-account-actions').style.display = 'none';
     document.getElementById('oauth-url').href = url;
     document.getElementById('oauth-code').textContent = code;
 }
@@ -1026,11 +1028,13 @@ function updateLoginStatus(data) {
         statusEl.style.color = 'var(--success-color)';
         document.getElementById('login-form').style.display = 'none';
         document.getElementById('oauth-code-display').style.display = 'none';
+        document.getElementById('linked-account-actions').style.display = 'block';
     } else {
         const loggedOut = t.gui?.login?.logged_out || 'Not logged in';
         statusEl.textContent = data.status || loggedOut;
         statusEl.setAttribute('translation-key', 'logged_out');
         statusEl.style.color = 'var(--text-secondary)';
+        document.getElementById('linked-account-actions').style.display = 'none';
         // Check if OAuth is pending (for late-connecting clients)
         if (data.oauth_pending) {
             showOAuthCode(data.oauth_pending.url, data.oauth_pending.code);

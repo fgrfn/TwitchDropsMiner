@@ -59,12 +59,14 @@
                         <input type="password" id="password" placeholder="Password" />
                         <input type="text" id="2fa-token" placeholder="2FA Token (optional)" />
                         <button id="login-button">Login</button>
-                        <button id="unlink-account-button" class="secondary-btn">Unlink Account</button>
                     </div>
                     <div id="oauth-code-display" style="display: none;">
                         <p>Enter this code at: <a id="oauth-url" href="#" target="_blank">Twitch Activate</a></p>
                         <div class="oauth-code" id="oauth-code"></div>
                         <button id="oauth-confirm">I've entered the code</button>
+                    </div>
+                    <div id="linked-account-actions" style="display: none; margin-top: 8px;">
+                        <button id="unlink-account-button" class="secondary-btn">Unlink Account</button>
                     </div>
                 </section>
 
