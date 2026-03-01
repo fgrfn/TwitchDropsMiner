@@ -22,6 +22,7 @@ No more tab juggling, channel switching, or missing rewards — just set it, for
 - 🔍 **Automatic Campaign Discovery** — Detects new drop events automatically
 - ⚙️ **Auto Channel Switching** — Always mines the best available stream
 - 🧠 **Auto-Add New Games (Optional)** — Automatically adds newly eligible games to your watchlist
+- 🔔 **Discord Webhook Notifications** — Get alerts for auto-added games and claimed drops
 - 💾 **Persistent Login** — OAuth login saved via cookies
 - 🕹️ **Simple Web UI** — Manage everything from your browser
 - 🧩 **Docker-Ready** — One command to deploy anywhere
@@ -80,6 +81,16 @@ You can enable automatic watchlist expansion for newly eligible campaigns:
 These values are stored in your settings JSON and can be updated via the web settings API.
 
 A WebUI toggle is available in **Settings → General** (`Auto-add newly eligible games`).
+
+### 🔔 Discord Webhook Notifications
+
+You can configure Discord webhook notifications in **Settings → General**:
+
+- `discord_webhook_url`: Discord webhook endpoint
+- `discord_notify_auto_add`: notify when games are auto-added
+- `discord_notify_claimed_drops`: notify when drops are successfully claimed
+
+If no webhook URL is set, notifications are skipped.
 
 ### 🧭 Faster Priority Reordering
 

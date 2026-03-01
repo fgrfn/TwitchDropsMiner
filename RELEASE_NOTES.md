@@ -1,3 +1,22 @@
+# Release Notes - v1.2.7
+
+This release adds optional Discord webhook notifications for key miner events and improves operational visibility.
+
+### 🔔 Discord Webhook Notifications
+
+- Added configurable Discord webhook support in Settings.
+- New notifications for:
+  - auto-added games
+  - successfully claimed drops
+- Notifications are best-effort and safely skipped when no webhook URL is configured.
+
+### ⚙️ Configuration
+
+New settings fields:
+- `discord_webhook_url`
+- `discord_notify_auto_add`
+- `discord_notify_claimed_drops`
+
 # Release Notes - v1.2.6
 
 This patch improves runtime stability when Twitch returns transient GraphQL service errors for specific game directories.
