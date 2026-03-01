@@ -1,3 +1,16 @@
+# Release Notes - v1.2.8
+
+This patch fixes WebUI persistence issues for newly introduced auto-add and Discord webhook notification settings.
+
+### 🛠️ Fixes
+
+- Fixed settings persistence for:
+  - `auto_add_new_games`
+  - `discord_webhook_url`
+  - `discord_notify_auto_add`
+  - `discord_notify_claimed_drops`
+- Added missing WebUI auto-save event bindings (change/blur), so updates are now reliably saved via `/api/settings`.
+
 # Release Notes - v1.2.7
 
 This release adds optional Discord webhook notifications for key miner events and improves operational visibility.
