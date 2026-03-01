@@ -1957,6 +1957,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('language').addEventListener('change', saveSettings);
     document.getElementById('connection-quality').addEventListener('change', saveSettings);
     document.getElementById('minimum-refresh-interval').addEventListener('change', saveSettings);
+    document.getElementById('auto-add-new-games').addEventListener('change', saveSettings);
+    document.getElementById('discord-notify-auto-add').addEventListener('change', saveSettings);
+    document.getElementById('discord-notify-claimed-drops').addEventListener('change', saveSettings);
+    document.getElementById('discord-webhook-url').addEventListener('change', saveSettings);
+    document.getElementById('discord-webhook-url').addEventListener('blur', saveSettings);
     // Proxy uses a manual "Set Proxy" button instead of auto-save
     document.getElementById('set-proxy-btn').addEventListener('click', () => {
         const proxyInput = document.getElementById('proxy-url');
