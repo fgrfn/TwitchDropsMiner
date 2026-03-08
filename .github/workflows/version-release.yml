@@ -26,7 +26,6 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -75,18 +74,14 @@ jobs:
 
     steps:
       - name: Checkout release branch
-        uses: actions/checkout@v5
         with:
           ref: ${{ needs.create-release-branch.outputs.release_branch }}
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -111,7 +106,6 @@ jobs:
           echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
         with:
           context: .
           platforms: linux/amd64,linux/arm64
@@ -133,7 +127,6 @@ jobs:
 
     steps:
       - name: Checkout release branch
-        uses: actions/checkout@v5
         with:
           ref: ${{ needs.create-release-branch.outputs.release_branch }}
           fetch-depth: 0
@@ -142,10 +135,10 @@ jobs:
         run: .github/scripts/extract_release_notes.sh "${{ needs.create-release-branch.outputs.version }}"
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
         with:
           tag_name: v${{ needs.create-release-branch.outputs.version }}
           name: Release ${{ needs.create-release-branch.outputs.version }}
           body_path: release_notes.md
           prerelease: ${{ needs.create-release-branch.outputs.is_prerelease }}
+          draft: false
           draft: false
